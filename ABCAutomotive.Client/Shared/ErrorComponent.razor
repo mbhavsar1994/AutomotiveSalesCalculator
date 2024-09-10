@@ -1,0 +1,7 @@
+<div class="alert alert-danger" role="alert" @if="!string.IsNullOrEmpty(ErrorMessage)">
+    @ErrorMessage
+</div>
+
+@code {
+    [Parameter] public string ErrorMessage { get; set; }
+}

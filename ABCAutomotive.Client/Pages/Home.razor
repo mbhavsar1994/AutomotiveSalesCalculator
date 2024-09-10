@@ -1,0 +1,93 @@
+﻿@page "/"
+@using ABCAutomotive.Client.DataAccess
+@inject ISalesService SalesService
+@inject NavigationManager Navigation
+
+<h3>Calculate Dealership Profit and Sales Associate Commission</h3>
+
+<div class="form-group row mt-5">
+    <label class="col-form-label col-md-2">Selling Season Start:</label>
+    <div class="col-md-2">
+        <input type="date" @bind="sellingSeasonStart" class="form-control form-control-sm" />
+    </div>
+</div>
+
+<div class="form-group row mt-4">
+    <label class="col-form-label col-md-2">Selling Season End:</label>
+    <div class="col-md-2">
+        <input type="date" @bind="sellingSeasonEnd" class="form-control form-control-sm" />
+    </div>
+</div>
+
+<div class="form-group row mt-4">
+    <label class="col-form-label col-md-2">Sale Date:</label>
+    <div class="col-md-2">
+        <input type="date" @bind="saleDate" class="form-control form-control-sm" />
+    </div>
+</div>
+
+
+<div class="mt-4">
+    <button class="btn btn-primary" @onclick="GetSalesDetails">Calculate</button>
+</div>
+
+<!-- Error handling for any API call failure -->
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger mt-4">
+        @errorMessage
+    </div>
+}
+
+<!-- Display results in a table when salesDetails is available -->
+@if (salesDetails != null && salesDetails.Any())
+{
+    <table class="table table-bordered table-striped mt-5">
+        <thead>
+            <tr>
+                <th>Car Make</th>
+                <th>Car Model</th>
+                <th>Profit</th>
+                <th>Commission</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sale in salesDetails)
+            {
+                <tr>
+                    <td>@sale.CarMake</td>
+                    <td>@sale.CarModel</td>
+                    <td>@sale.Profit.ToString("C")</td>
+                    <td>@sale.Commission.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else if (salesDetails != null && !salesDetails.Any())
+{
+    <p class="mt-4">No sales found for the given date.</p>
+}
+
+@code {
+    private DateTime sellingSeasonStart = DateTime.Today.AddMonths(-1);
+    private DateTime sellingSeasonEnd = DateTime.Today;
+    private DateTime saleDate = DateTime.Today;
+    private List<SaleDetailsDto>? salesDetails;
+    private string? errorMessage;
+
+    private async Task GetSalesDetails()
+    {
+        errorMessage = null;
+        salesDetails = null; 
+
+        try
+        {
+            salesDetails = await SalesService.GetSaleDetailsAsync(sellingSeasonStart, sellingSeasonEnd, saleDate);
+        }
+        catch (Exception ex)
+        {
+            errorMessage = ex.Message;
+        }
+    }
+}

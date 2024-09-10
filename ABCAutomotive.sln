@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABCAutomotive.WebAPI", "ABCAutomotive.WebAPI\ABCAutomotive.WebAPI.csproj", "{31E3924E-2D91-4BE7-9F38-F5E0C14C701B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABCAutomotive.Client", "ABCAutomotive.Client\ABCAutomotive.Client.csproj", "{AC1AFEEB-1FF8-4F6C-AE4A-0ECFE3DB1E5F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{31E3924E-2D91-4BE7-9F38-F5E0C14C701B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31E3924E-2D91-4BE7-9F38-F5E0C14C701B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31E3924E-2D91-4BE7-9F38-F5E0C14C701B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31E3924E-2D91-4BE7-9F38-F5E0C14C701B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC1AFEEB-1FF8-4F6C-AE4A-0ECFE3DB1E5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC1AFEEB-1FF8-4F6C-AE4A-0ECFE3DB1E5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC1AFEEB-1FF8-4F6C-AE4A-0ECFE3DB1E5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC1AFEEB-1FF8-4F6C-AE4A-0ECFE3DB1E5F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

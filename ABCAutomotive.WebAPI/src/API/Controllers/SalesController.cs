@@ -22,7 +22,7 @@ public class SalesController : ControllerBase
     {
         if (!ModelState.IsValid)
         {
-            return BadRequest(ModelState); // Return a 400 Bad Request if the model is invalid
+            return BadRequest(ModelState);
         }
 
         var saleId = await _mediator.Send(command);
@@ -36,8 +36,7 @@ public class SalesController : ControllerBase
         var sales = await _mediator.Send(new GetSalesQuery());
         return Ok(sales);
     }
-
-    // GET: api/sales/details?sellingSeasonStart=2024-08-01&sellingSeasonEnd=2024-08-30&saleDate=2024-08-15
+    
     [HttpGet("details")]
     public async Task<IActionResult> GetSaleDetails([FromQuery] DateTime sellingSeasonStart, [FromQuery] DateTime sellingSeasonEnd, [FromQuery] DateTime saleDate)
     {

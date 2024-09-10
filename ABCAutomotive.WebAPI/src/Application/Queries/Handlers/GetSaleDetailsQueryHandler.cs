@@ -35,14 +35,13 @@ public class GetSaleDetailsQueryHandler : IRequestHandler<GetSaleDetailsQuery, L
         {
             var car = sale.Car;
 
-            // Get the appropriate price adjustment service based on car type
+            // Get the appropriate price adjustment car type
             var priceAdjustmentService = _priceAdjustmentServiceFactory.GetCarPriceAdjustmentService(car);
 
             // Calculate dealership profit using the selected service
             decimal profit = priceAdjustmentService.AdjustPrice(car, request.SellingSeasonStart, request.SellingSeasonEnd, sale.SaleDate) - car.Cost;
             decimal commission = CalculateCommission(profit);
-
-            // Add the calculated result to the list
+            
             saleDetailsList.Add(new SaleDetailsDto
             {
                 SaleId = sale.SaleId,

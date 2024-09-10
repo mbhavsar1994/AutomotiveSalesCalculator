@@ -5,12 +5,10 @@ namespace ABCAutomotive.Client.DataAccess;
 public class SalesService : ISalesService
 {
     private readonly HttpClient _httpClient;
-
     public SalesService(HttpClient httpClient)
     {
         _httpClient = httpClient;
     }
-
     public async Task<List<SaleDetailsDto>> GetSaleDetailsAsync(DateTime sellingSeasonStart, DateTime sellingSeasonEnd, DateTime saleDate)
     {
         try
@@ -23,9 +21,7 @@ public class SalesService : ISalesService
                 return new List<SaleDetailsDto>();
             }
             response.EnsureSuccessStatusCode();
-            
             var result = await response.Content.ReadFromJsonAsync<List<SaleDetailsDto>>();
-
             return result ??  new List<SaleDetailsDto>();
         }
         catch (HttpRequestException ex)

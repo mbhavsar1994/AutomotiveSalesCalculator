@@ -24,7 +24,7 @@ public class SaleRepository : ISaleRepository
         return await _context.Sales.Include(s => s.Car).ToListAsync();
     }
 
-    public async Task AddAsync(Sale? sale)
+    public async Task AddAsync(Sale sale)
     {
         _context.Sales.Add(sale);
         await _context.SaveChangesAsync();
